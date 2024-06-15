@@ -11,6 +11,8 @@ import Login from "./pages/Authentication/Login/Login";
 import UserDataContext from "./context/UserDataContext";
 import NoMatch from "./pages/NoMatch/NoMatch";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import User from "./pages/User/User";
+import Dashboard from "./pages/User/Dashboard/Dashboard";
 
 function Router() {
   const router = createBrowserRouter(
@@ -20,6 +22,10 @@ function Router() {
         <Route path="/" element={<Home />}>
           <Route index element={<LandingPage />} />
           <Route path="login" element={<Login />} />
+
+          <Route path="user" element={<User />}>
+            <Route index element={<Dashboard />} />
+          </Route>
         </Route>
       </Route>
     )

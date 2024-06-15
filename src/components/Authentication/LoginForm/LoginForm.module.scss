@@ -1,0 +1,128 @@
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  @media (max-width: 992px) {
+    gap: 1rem;
+  }
+
+  .input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 100%;
+
+    .default {
+      width: 100%;
+      border: 0.125rem solid #545f7d26;
+      border-radius: 0.3125rem;
+      &:focus-within {
+        border: 0.125rem solid var(--secondary-color);
+      }
+
+      input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        color: var(--secondary-text-color);
+        font-size: 0.875rem;
+        font-weight: 400;
+        padding: 0.8rem 0.8rem;
+        border-radius: 0.3125rem;
+
+        &::placeholder {
+          color: #545f7d99;
+        }
+      }
+    }
+
+    .password {
+      width: 100%;
+      padding-right: 1.75rem;
+
+      border: 0.125rem solid #545f7d26;
+      border-radius: 0.3125rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      @media (max-width: 576px) {
+        padding-right: 2rem;
+      }
+
+      &:focus-within {
+        border: 0.125rem solid var(--secondary-color);
+      }
+      input {
+        width: 95%;
+        border: none;
+        outline: none;
+        color: var(--secondary-text-color);
+        font-size: 0.875rem;
+        font-weight: 400;
+        padding: 0.8rem 0rem 0.8rem 0.8rem;
+        border-radius: 0.3125rem;
+
+        &::placeholder {
+          color: #545f7d99;
+        }
+      }
+
+      p {
+        width: 5%;
+        color: var(--secondary-color);
+        font-size: 0.75rem;
+        cursor: pointer;
+        font-weight: 600;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+    p {
+      color: red;
+      font-size: 0.75rem;
+    }
+  }
+
+  .forgotPassword {
+    letter-spacing: 10%;
+    color: var(--secondary-color);
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 1.0244rem;
+    margin-top: 0.25rem;
+  }
+  button {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 0.85rem 0;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 10%;
+    line-height: 1.195rem;
+    text-align: center;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.6;
+    }
+    @media (max-width: 992px) {
+      padding: 0.7rem 0;
+      border-radius: 0.3rem;
+    }
+
+    @media (max-width: 576px) {
+      padding: 0.75rem 0;
+    }
+  }
+}

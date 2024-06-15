@@ -1,0 +1,19 @@
+/* To target the autofill styles */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset; /* Change white to the background color you want */
+  box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: #000; /* Change to your preferred text color */
+}
+
+/* To ensure the styles are applied */
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: #000;
+}
+
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: #000;
+}
