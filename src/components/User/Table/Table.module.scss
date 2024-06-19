@@ -1,0 +1,151 @@
+.header {
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary-text-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+
+  &.inactive {
+    color: var(--secondary-text-color);
+    background-color: #545f7d0d;
+  }
+
+  &.pending {
+    color: #e9b200;
+    background-color: #e9b2001a;
+  }
+
+  &.blacklisted {
+    color: #e4033b;
+    background-color: #e4033b1a;
+  }
+
+  &.active {
+    color: #39cd62;
+    background-color: #39cd621a;
+  }
+}
+
+.container {
+  .content {
+    .noResult {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 4rem;
+    }
+
+    .table {
+      width: 100%;
+      overflow-x: auto;
+      background-color: var(--primary-color);
+      padding: 1rem 1rem;
+      border-radius: 0.25rem;
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+        thead {
+          tr {
+            th {
+              padding: 1rem 1rem;
+              text-align: left;
+            }
+          }
+        }
+        tbody {
+          tr {
+            td {
+              padding: 1rem 1rem;
+              text-align: left;
+              color: var(--secondary-text-color);
+              font-size: 0.875rem;
+              font-weight: 400;
+              border-bottom: 1px solid #213f7d1a;
+            }
+          }
+        }
+      }
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        p {
+          color: var(--secondary-text-color);
+          font-size: 0.875rem;
+          font-weight: 400;
+        }
+
+        select {
+          background: #213f7d1a;
+          color: var(--primary-text-color);
+          font-size: 0.875rem;
+          font-weight: 500;
+          padding: 0.2rem 0.5rem;
+          border-radius: 0.25rem;
+          border: none;
+          outline: none;
+        }
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        button {
+          background: none;
+          border: none;
+          color: var(--primary-text-color);
+          font-size: 1rem;
+          cursor: pointer;
+          padding: 0.5rem 0.3rem;
+          border-radius: 0.25rem;
+          background-color: #213f7d1a;
+          display: flex;
+          justify-content: center;
+
+          &:disabled {
+            cursor: not-allowed;
+            opacity: 80%;
+          }
+        }
+
+        .pages {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          font-weight: 400;
+          color: #545f7d99;
+          font-size: 1rem;
+          cursor: pointer;
+
+          .currentPage {
+            color: var(--secondary-text-color);
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

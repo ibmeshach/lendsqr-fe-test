@@ -1,1 +1,65 @@
-   
+@font-face {
+  font-family: work-sans;
+  src: url(../../fonts/work-sans/WorkSans-Regular.ttf);
+}
+
+.container {
+  font-family: work-sans;
+  width: 100%;
+
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .main {
+      display: flex;
+      background-color: #fbfbfb;
+
+      .sidebar {
+        height: 100%;
+        background-color: var(--primary-color);
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 350px;
+        box-shadow: 0px 5px 20px 0px #0000000a;
+        // position: fixed;
+
+        @media (max-width: 992px) {
+          width: 340px;
+        }
+
+        @media (max-width: 768px) {
+          width: 0;
+        }
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+
+        main {
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          overflow-y: auto;
+          overflow-x: hidden;
+          display: flex;
+          align-items: flex-start;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      }
+    }
+  }
+}

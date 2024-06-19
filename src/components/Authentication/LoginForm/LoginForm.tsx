@@ -24,7 +24,7 @@ const LoginForm = () => {
   const onSubmit = async (data: LoginValues) => {
     console.log(data);
     reset();
-    navigate("/user/dashboard");
+    navigate("/user/users");
   };
 
   return (
