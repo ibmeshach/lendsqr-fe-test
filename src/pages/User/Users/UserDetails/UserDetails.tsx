@@ -3,7 +3,7 @@ import styles from "./UserDetails.module.scss";
 import Header from "../../../../components/User/UserDetails/Header/Header";
 import Info from "../../../../components/User/UserDetails/Info/Info";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetAllUsers } from "../../../../hooks/useApiMethod";
 import Loader from "../../../../components/Shared/Loader/Loader";
 
@@ -11,20 +11,20 @@ const UserDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [user, setUser] = useState<User>({
-    username: "",
-    id: "",
-    organization: "",
-    email: "",
-    phoneNumber: "",
-    dateJoined: "",
-    status: "",
-  });
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem(`user-${id}`);
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, [id]);
 
   const onSuccess = (data: any) => {
     const content = data?.data;
     const selectedUser = content.find((user: any) => user.id === id);
     setUser(selectedUser);
+    localStorage.setItem(`user-${id}`, JSON.stringify(selectedUser));
   };
 
   const onError = (error: any) => {
@@ -32,6 +32,10 @@ const UserDetails = () => {
   };
 
   const { isLoading, isError } = useGetAllUsers(onError, onSuccess);
+
+  if (!user) {
+    return isLoading ? <Loader /> : <p>No user found</p>;
+  }
 
   return (
     <>

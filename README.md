@@ -1,31 +1,67 @@
-# React + TypeScript + Vite
+# Lendsqr Frontend Engineering Assessment - Candidate: [Your Name]
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+Welcome to my submission for the Lendsqr frontend engineering assessment. This project demonstrates my expertise in developing a responsive web application using React with TypeScript and SCSS. Below are the key aspects of the project:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Details
 
-## Expanding the ESLint configuration
+### Pages Implemented
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. **Login Page**
 
-- Configure the top-level `parserOptions` property like this:
+   - Designed for secure user authentication with a clear and intuitive UI.
+   - Implemented form validation and error handling for a seamless user experience.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+2. **Dashboard**
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# lendsqr-fe-test
+   - Developed a dynamic dashboard displaying key metrics and data relevant to user activities.
+   - Utilized React components to visualize data effectively and ensure responsiveness across devices.
+
+3. **User Page**
+
+   - Integrated a mock API to fetch and display a list of users.
+   - Implemented pagination for efficient data loading and browsing.
+
+4. **User Details Page**
+   - Designed a detailed view for individual user profiles, leveraging local storage for persistent data storage.
+
+### Key Features Implemented
+
+- **Visual Fidelity**: Ensured that the application closely adheres to the design specifications provided in Figma. This includes layout, styling, typography, and color schemes, maintaining a consistent visual identity throughout.
+
+- **Data Management**: Utilized mock APIs and local storage to simulate real-world data scenarios. This approach ensures seamless data handling and persistence, enhancing user interaction and workflow continuity.
+
+- **Responsiveness**: Developed the application to be fully responsive across various devices and screen sizes. Applied CSS media queries and responsive design principles to optimize user experience on desktops, tablets, and mobile devices.
+
+- **Testing**: Implemented unit tests using Jest and React Testing Library to validate the functionality of components and ensure code reliability. Tests cover positive and negative scenarios to maintain robustness and stability.
+
+### Tech Stack
+
+- **Framework**: React for building interactive and scalable user interfaces.
+- **Language**: TypeScript for type-safe and maintainable codebase, improving development efficiency and reducing errors.
+- **Styling**: SCSS for enhanced CSS preprocessing capabilities, facilitating modular and reusable stylesheets.
+
+## Repository and Deployment
+
+### Repository
+
+The source code is available on GitHub:
+
+- [GitHub Repository](https://github.com/ibmeshach/lendsqr-fe-test)
+
+### Deployment
+
+The application is deployed on [Cloud Platform Name] and accessible via the following URL:
+
+- [Link to deployed application](https://ibmeshach-lendsqr-fe-test.vercel.com)
+
+## Documentation
+
+For a detailed review of my approach, decision-making process, and comparison against the Figma design, please refer to my [Google Docs / Notion / other] document:
+
+- [Link to documentation](https://docs.google.com/document/d/1rm6yMBPve9RsyaWHUn64icFsnGKgq0m3Le-kTxcxgFI/edit?usp=sharing)
+
+## Conclusion
+
+Thank you for considering my submission for the frontend engineering position at Lendsqr. I look forward to discussing my solution further in the technical interview.
