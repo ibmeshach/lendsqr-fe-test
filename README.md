@@ -52,13 +52,13 @@ The source code is available on GitHub:
 
 ### Deployment
 
-The application is deployed on [Cloud Platform Name] and accessible via the following URL:
+The application is deployed on Vercel and accessible via the following URL:
 
-- [Link to deployed application](https://ibmeshach-lendsqr-fe-test.vercel.com)
+- [Link to deployed application](https://ibmeshach-lendsqr-fe-test.vercel.app)
 
 ## Documentation
 
-For a detailed review of my approach, decision-making process, and comparison against the Figma design, please refer to my [Google Docs / Notion / other] document:
+For a detailed review of my approach, decision-making process, and comparison against the Figma design, please refer to my Google Docs document:
 
 - [Link to documentation](https://docs.google.com/document/d/1rm6yMBPve9RsyaWHUn64icFsnGKgq0m3Le-kTxcxgFI/edit?usp=sharing)
 

@@ -15,7 +15,7 @@ const LoginForm = () => {
       password: "",
     },
     resolver: yupResolver(loginSchema),
-    mode: "onBlur",
+    mode: "onBlur" || "onSubmit" || "onChange",
   });
 
   const { register, handleSubmit, formState, reset } = form;
