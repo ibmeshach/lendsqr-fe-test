@@ -1,4 +1,4 @@
-# Lendsqr Frontend Engineering Assessment - Candidate: [Your Name]
+# Lendsqr Frontend Engineering Assessment - Ibadin Meshach Eidenehi
 
 ## Project Overview
 
