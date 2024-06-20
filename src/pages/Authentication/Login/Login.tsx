@@ -1,14 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import { authbg, logo } from "../../../assets";
 import LoginForm from "../../../components/Authentication/LoginForm/LoginForm";
 import styles from "./Login.module.scss";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.brand}>
           <div>
-            <img className={styles.logo} src={logo} alt="logo" />
+            <img
+              onClick={() => {
+                navigate("/");
+              }}
+              className={styles.logo}
+              src={logo}
+              alt="logo"
+            />
             <img className={styles.authBg} src={authbg} alt="authbg" />
           </div>
         </div>

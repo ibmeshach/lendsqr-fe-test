@@ -7,6 +7,7 @@ import {
 import styles from "./Navbar.module.scss";
 import { close, logo, menu, profile } from "../../../assets";
 import { GeneralUserData } from "../../../context/UserDataContext";
+import { useNavigate } from "react-router-dom";
 
 interface NavProps {
   setOpen: (open: boolean) => void;
@@ -14,6 +15,7 @@ interface NavProps {
 }
 
 const Navbar: React.FC<NavProps> = ({ setOpen, open }) => {
+  const navigate = useNavigate();
   const { searchKey, setSearchKey } = useContext(GeneralUserData);
   const [searchBarState, setSearchBarState] = useState<boolean>(false);
   const openState = () => {
@@ -24,7 +26,13 @@ const Navbar: React.FC<NavProps> = ({ setOpen, open }) => {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.left}>
-          <img src={logo} alt="" />
+          <img
+            onClick={() => {
+              navigate("/");
+            }}
+            src={logo}
+            alt=""
+          />
           <div className={styles.search}>
             <input
               value={searchKey}
