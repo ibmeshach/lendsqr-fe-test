@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { briefcase, dropdown } from "../../../assets";
+import { briefcase, dropdown, logout } from "../../../assets";
 import styles from "./Sidebar.module.scss";
 
 const Sidebar = ({
@@ -34,12 +34,7 @@ const Sidebar = ({
             : styles.container
         }
       >
-        <div
-          onClick={() => {
-            navigate("/");
-          }}
-          className={styles.switch}
-        >
+        <div onClick={() => {}} className={styles.switch}>
           <img src={briefcase} alt="briefcase" />
           <div>
             <p>Switch Organization</p>
@@ -73,6 +68,16 @@ const Sidebar = ({
               </div>
             );
           })}
+          <div className={styles.bottom}>
+            <div onClick={() => {}} className={styles.logout}>
+              <img src={logout} alt="logout" />
+              <div>
+                <p>Logout</p>
+              </div>
+            </div>
+
+            <span>v1.2.0</span>
+          </div>
         </div>
       </div>
     </>

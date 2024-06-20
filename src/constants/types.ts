@@ -28,3 +28,12 @@ interface User {
 interface TableProp {
   data: User[];
 }
+
+interface FilterProps {
+  organization: string;
+  username: string;
+  email: string;
+  date: string;
+  phoneNumber: string;
+  status: string;
+}

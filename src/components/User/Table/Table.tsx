@@ -1,17 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useTable, usePagination, useGlobalFilter, Column } from "react-table";
 import styles from "./Table.module.scss";
 import { IoFilterSharp } from "react-icons/io5";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { format } from "date-fns";
-
-const searchKey = "";
-const CustomHeader = ({ title }: { title: string }) => (
-  <div className={styles.header}>
-    {title} <IoFilterSharp cursor="pointer" />
-  </div>
-);
+import Filter from "../../Shared/Modals/Filter/Filter";
+import { GeneralUserData } from "../../../context/UserDataContext";
+import Options from "../../Shared/Modals/Options/Options";
 
 const calculateDisplayPages = (
   pageIndex: number,
@@ -61,18 +57,102 @@ const calculateDisplayPages = (
 };
 
 const Table = ({ data = [] }: TableProp) => {
+  const { searchKey } = useContext(GeneralUserData);
   const [searchedData, setSearchedData] = useState<User[]>([]);
+  const [showFilter, setShowFilter] = useState<boolean>(false);
+  const [showOption, setShowOption] = useState<{
+    state: boolean;
+    index: string | null;
+  }>({
+    state: false,
+    index: null,
+  });
+  const [filterData, setFilterData] = useState<FilterProps>({
+    organization: "",
+    username: "",
+    email: "",
+    date: "",
+    phoneNumber: "",
+    status: "",
+  });
 
   useEffect(() => {
-    let searchedDataCopy = [...data];
+    let filteredData = [...data];
 
-    if (searchKey !== "") {
-      searchedDataCopy = searchedDataCopy.filter((data) =>
-        data?.email?.includes(searchKey)
+    // Filter logic
+    if (filterData.organization) {
+      filteredData = filteredData.filter((data) =>
+        data.organization
+          .toLowerCase()
+          .includes(filterData.organization.toLowerCase())
       );
     }
-    setSearchedData(searchedDataCopy);
-  }, [searchKey, data]);
+    if (filterData.username) {
+      filteredData = filteredData.filter((data) =>
+        data.username.toLowerCase().includes(filterData.username.toLowerCase())
+      );
+    }
+    if (filterData.email) {
+      filteredData = filteredData.filter((data) =>
+        data.email.toLowerCase().includes(filterData.email.toLowerCase())
+      );
+    }
+    if (filterData.date) {
+      filteredData = filteredData.filter(
+        (data) =>
+          format(new Date(data.dateJoined), "yyyy-MM-dd") === filterData.date
+      );
+    }
+    if (filterData.phoneNumber) {
+      filteredData = filteredData.filter((data) =>
+        data.phoneNumber
+          .toLowerCase()
+          .includes(filterData.phoneNumber.toLowerCase())
+      );
+    }
+    if (filterData.status) {
+      filteredData = filteredData.filter((data) =>
+        data.status.toLowerCase().includes(filterData.status.toLowerCase())
+      );
+    }
+
+    // Search logic
+    if (searchKey) {
+      filteredData = filteredData.filter(
+        (data) =>
+          data.email.toLowerCase().includes(searchKey.toLowerCase()) ||
+          data.organization.toLowerCase().includes(searchKey.toLowerCase()) ||
+          data.username.toLowerCase().includes(searchKey.toLowerCase()) ||
+          data.phoneNumber.toLowerCase().includes(searchKey.toLowerCase()) ||
+          data.status.toLowerCase().includes(searchKey.toLowerCase())
+      );
+    }
+
+    setSearchedData(filteredData);
+  }, [searchKey, filterData, data]);
+
+  const CustomHeader = ({ title }: { title: string }) => (
+    <>
+      <div className={styles.header}>
+        {title}{" "}
+        <IoFilterSharp
+          onClick={() => {
+            setShowFilter(!showFilter);
+          }}
+          cursor="pointer"
+        />
+      </div>
+
+      {showFilter ? (
+        <Filter
+          onClose={() => {
+            setShowFilter(false);
+          }}
+          setFilterData={setFilterData}
+        />
+      ) : null}
+    </>
+  );
 
   const columns: Column<User>[] = useMemo(
     () => [
@@ -103,47 +183,49 @@ const Table = ({ data = [] }: TableProp) => {
         Header: () => <CustomHeader title="Status" />,
         accessor: "status",
         Cell: ({ value }: { value: string }) => {
-          if (value == "Inactive") {
-            return (
-              <span className={`${styles.status} ${styles.inactive}`}>
-                {value}
-              </span>
-            );
-          } else if (value == "Pending") {
-            return (
-              <span className={`${styles.status} ${styles.pending}`}>
-                {value}
-              </span>
-            );
-          } else if (value == "Blacklisted") {
-            return (
-              <span className={`${styles.status} ${styles.blacklisted}`}>
-                {value}
-              </span>
-            );
-          } else if (value == "Active") {
-            return (
-              <span className={`${styles.status} ${styles.active}`}>
-                {value}
-              </span>
-            );
-          } else {
-            return value;
-          }
+          const statusStyles: { [key: string]: string } = {
+            Inactive: styles.inactive,
+            Pending: styles.pending,
+            Blacklisted: styles.blacklisted,
+            Active: styles.active,
+          };
+          return (
+            <span className={`${styles.status} ${statusStyles[value] || ""}`}>
+              {value}
+            </span>
+          );
         },
       },
       {
         Header: "",
         id: "action",
         Cell: ({ row }: { row: any }) => {
-          console.log(row);
+          const data: User = row.original;
           return (
-            <BsThreeDotsVertical color="#545F7D" size={18} onClick={() => {}} />
+            <>
+              <BsThreeDotsVertical
+                cursor="pointer"
+                color="#545F7D"
+                size={18}
+                onClick={() => {
+                  setShowOption((prev) => ({
+                    state: prev.index !== data.id || !prev.state,
+                    index: prev.index !== data.id ? data.id : null,
+                  }));
+                }}
+              />
+              {showOption.state && showOption.index === data.id ? (
+                <Options
+                  onClose={() => setShowOption({ state: false, index: null })}
+                  data={data}
+                />
+              ) : null}
+            </>
           );
         },
       },
     ],
-    []
+    [showFilter, showOption]
   );
 
   const {
@@ -163,7 +245,7 @@ const Table = ({ data = [] }: TableProp) => {
   } = useTable(
     {
       columns,
-      data,
+      data: searchedData,
     },
     useGlobalFilter,
     usePagination
@@ -187,27 +269,41 @@ const Table = ({ data = [] }: TableProp) => {
             <div className={styles.table}>
               <table cellPadding="0" cellSpacing="0" {...getTableProps()}>
                 <thead>
-                  {headerGroups.map((headerGroup: any) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                      {headerGroup.headers.map((column: any) => (
-                        <th {...column.getHeaderProps()}>
-                          {column.render("Header")}
-                        </th>
-                      ))}
-                    </tr>
-                  ))}
+                  {headerGroups.map((headerGroup: any) => {
+                    const { key: headerGroupKey, ...headerGroupProps } =
+                      headerGroup.getHeaderGroupProps();
+                    return (
+                      <tr key={headerGroupKey} {...headerGroupProps}>
+                        {headerGroup.headers.map((column: any) => {
+                          const { key: columnKey, ...columnProps } =
+                            column.getHeaderProps();
+                          return (
+                            <th key={columnKey} {...columnProps}>
+                              {column.render("Header")}
+                            </th>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
                 </thead>
+
                 <tbody {...getTableBodyProps()}>
                   {page.map((row: any, rowIndex: number) => {
                     prepareRow(row);
                     const isLastRow = rowIndex === page.length - 1;
+                    const { key: rowKey, ...rowProps } = row.getRowProps();
+
                     return (
-                      <tr {...row.getRowProps()}>
+                      <tr key={rowKey} {...rowProps}>
                         {row.cells.map((cell: any) => {
+                          const { key: cellKey, ...cellProps } =
+                            cell.getCellProps();
                           return (
                             <td
+                              key={cellKey}
                               style={isLastRow ? { borderBottom: "none" } : {}}
-                              {...cell.getCellProps()}
+                              {...cellProps}
                             >
                               {cell.render("Cell")}
                             </td>

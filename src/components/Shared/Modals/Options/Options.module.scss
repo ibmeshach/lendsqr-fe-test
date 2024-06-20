@@ -1,0 +1,23 @@
+.container {
+  position: absolute;
+  right: -1%;
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  border: 1px solid #545f7d0a;
+  background-color: var(--primary-color);
+  z-index: 500;
+  padding: 1.2rem 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--secondary-text-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}

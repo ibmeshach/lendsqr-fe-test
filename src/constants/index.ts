@@ -18,6 +18,7 @@ import {
   savings,
   scroll,
   sliders,
+  systems,
   transactions,
   userCheck,
   userCog,
@@ -181,6 +182,12 @@ export const UserSidebarItems: SidebarItem[] = [
         heading: "Audit Logs",
         path: "/user/auditLogs",
       },
+      {
+        id: 22,
+        icon: systems,
+        heading: "Systems Messages",
+        path: "/user/systemsMessages",
+      },
     ],
   },
 ];
@@ -209,4 +216,12 @@ export const statisticsData: StatisticsCardProps[] = [
     value: "102,453",
     icon: activeUS,
   },
+];
+
+export const UserDetailsNav = [
+  "General Details",
+  "Documents",
+  "Bank Details",
+  "Loans",
+  "Savings",
 ];

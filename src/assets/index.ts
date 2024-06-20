@@ -25,11 +25,16 @@ import transactions from "./User/icons/transactions.png";
 import userCheck from "./User/icons/userCheck.png";
 import userCog from "./User/icons/userCog.png";
 import userTimes from "./User/icons/userTimes.png";
+import systems from "./User/icons/systems.png";
+import logout from "./User/icons/logout.png";
 
 import normalUsers from "./User/users.png";
 import activeU from "./User/activeU.png";
 import activeUL from "./User/activeUL.png";
 import activeUS from "./User/activeUS.png";
+import avatar from "./User/avatar.png";
+import fillStar from "./User/fillStar.png";
+import unfillStar from "./User/unfillStar.png";
 
 export {
   authbg,
@@ -62,4 +67,9 @@ export {
   activeU,
   activeUL,
   activeUS,
+  avatar,
+  fillStar,
+  unfillStar,
+  systems,
+  logout,
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   IoIosSearch,
   IoMdArrowDropdown,
@@ -6,6 +6,7 @@ import {
 } from "react-icons/io";
 import styles from "./Navbar.module.scss";
 import { close, logo, menu, profile } from "../../../assets";
+import { GeneralUserData } from "../../../context/UserDataContext";
 
 interface NavProps {
   setOpen: (open: boolean) => void;
@@ -13,6 +14,7 @@ interface NavProps {
 }
 
 const Navbar: React.FC<NavProps> = ({ setOpen, open }) => {
+  const { searchKey, setSearchKey } = useContext(GeneralUserData);
   const [searchBarState, setSearchBarState] = useState<boolean>(false);
   const openState = () => {
     setOpen(!open);
@@ -24,7 +26,14 @@ const Navbar: React.FC<NavProps> = ({ setOpen, open }) => {
         <div className={styles.left}>
           <img src={logo} alt="" />
           <div className={styles.search}>
-            <input type="text" placeholder="Search for anything" />
+            <input
+              value={searchKey}
+              onChange={(e) => {
+                setSearchKey(e.target.value);
+              }}
+              type="text"
+              placeholder="Search for anything"
+            />
             <div>
               <IoIosSearch />
             </div>
@@ -65,7 +74,14 @@ const Navbar: React.FC<NavProps> = ({ setOpen, open }) => {
       </div>
       {searchBarState ? (
         <div className={styles.mobileSearch}>
-          <input type="text" />
+          <input
+            value={searchKey}
+            onChange={(e) => {
+              setSearchKey(e.target.value);
+            }}
+            placeholder="Search for anything"
+            type="text"
+          />
         </div>
       ) : null}
     </div>

@@ -14,6 +14,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import User from "./pages/User/User";
 import Dashboard from "./pages/User/Dashboard/Dashboard";
 import Users from "./pages/User/Users/Users";
+import UserDetails from "./pages/User/Users/UserDetails/UserDetails";
 
 function Router() {
   const router = createBrowserRouter(
@@ -27,6 +28,7 @@ function Router() {
           <Route path="user" element={<User />}>
             <Route index path="dashboard" element={<Dashboard />} />
             <Route path="users" element={<Users />} />
+            <Route path="userDetails/:id" element={<UserDetails />} />
             <Route path="guarantors" element={<Dashboard />} />
             <Route path="loans" element={<Dashboard />} />
             <Route path="decisionModels" element={<Dashboard />} />
@@ -45,6 +47,7 @@ function Router() {
             <Route path="preferences" element={<Dashboard />} />
             <Route path="fees&pricing" element={<Dashboard />} />
             <Route path="auditLogs" element={<Dashboard />} />
+            <Route path="systemsMessages" element={<Dashboard />} />
           </Route>
         </Route>
       </Route>
