@@ -19,7 +19,7 @@ const LoginForm = () => {
   });
 
   const { register, handleSubmit, formState, reset } = form;
-  const { errors, isValid } = formState;
+  const { errors } = formState;
 
   const onSubmit = async (data: LoginValues) => {
     console.log(data);
@@ -63,9 +63,7 @@ const LoginForm = () => {
         <p>{errors.password?.message}</p>
       </div>
       <p className={styles.forgotPassword}>FORGOT PASSWORD?</p>
-      <button type="submit" disabled={!isValid}>
-        LOG IN
-      </button>
+      <button type="submit">LOG IN</button>
     </form>
   );
 };
